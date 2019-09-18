@@ -27,8 +27,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/uploads", (req, res) => {
-  upload(req, res, err => {
+app.post("/uploads", async (req, res) => {
+  await upload(req, res, err => {
     if (err) return console.log(err);
     fs.readFile(`./uploads/${req.file.originalname}`, (err, data) => {
       if (err) return console.log(err);
