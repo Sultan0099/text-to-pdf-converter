@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const { TesseractWorker } = require("tesseract.js");
 const fs = require("fs");
+const enginde = require("ejs");
 
 const Worker = new TesseractWorker();
 const app = express();
@@ -18,6 +19,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage }).single("avatar");
 
+app.engine("ejs", engine);
+app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
